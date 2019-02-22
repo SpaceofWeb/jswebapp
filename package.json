@@ -1,0 +1,26 @@
+{
+  "name": "jswebapp",
+  "version": "1.0.0",
+  "description": "Basic node.js mvc web app with mongodb",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SpaceofWeb/jswebapp.git"
+  },
+  "author": "Space",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "liquidjs": "^7.2.0",
+    "mongoose": "^5.4.14",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
