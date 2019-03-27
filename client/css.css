@@ -1,0 +1,162 @@
+html, body{
+	/* width: 100%;
+	height: 100%; */
+	margin: 0;
+}
+
+@font-face {
+	font-family: 'Russo One'; /* Имя шрифта */
+	src: url(9928.ttf); /* Путь к файлу со шрифтом */
+}
+body{
+	background-color: #202020;
+	margin: 0;
+	padding: 0;
+	font-family: 'Bahnschrift';
+	color:white;
+}
+.logo{
+	font-family: 'Russo One';
+	font-size: 6em;
+	/*position: absolute;*/
+	text-align: center;
+	margin-top:20%;
+	width: 100%;
+	height: 200px;
+}
+h2{
+	font-size: 5em;
+	text-align: center;
+	font-family: 
+}
+hr{
+	border:2px solid white;
+}
+header{
+	display: flex;
+	font-size: 3.8em;
+	height:75px;
+	justify-content: space-around;
+	margin-top: 34px;
+	/*text-align: center;*/
+	width: 100%;
+}
+
+a {
+	color:white;
+	text-decoration: none;
+}
+
+input[type=text] {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	background-color: #202020;
+	border: none;
+	border-bottom: 2px solid #757575;
+	color:#757575;
+	font-family: 'Bahnschrift';
+	font-size: 2em;
+	width: 75%;
+	margin-top: 110px;
+}
+
+.button{
+	display: flex;
+	justify-content: space-around;
+	margin-top:10%;
+	margin-bottom: 30%;
+	height: 120px;
+}
+
+button{
+	background-color:  #424242;
+	border-radius: 15px;
+	border: none;
+	color:white;
+	font-family: 'Bahnschrift';
+	font-size: 2.7em;
+	width: 30%;
+}
+
+.vector{
+	margin-top:8%;
+	display: flex;
+	justify-content: space-around;
+}
+.vector>img{
+	width:12%; 
+	height:15%;
+}
+
+
+.room{
+	float: left;
+	width:47%;
+}
+.select{
+	float: right;
+	width: 47%;
+}
+.card{
+	background-color:#424242 ;
+	width: 60%;
+	margin: 15% auto;
+	padding: 3%;
+}
+.room>.card{
+	background-color: #424242;
+	width: 60%;
+	margin: 15% auto;
+	padding: 0;
+}
+
+.select>.card{
+	background-color: #202020;
+	width: 30%;
+	margin: 15% auto;
+	padding: 0;
+}
+.card>p{
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Bahnschrift';
+	font-size: 2em;
+	margin: 5% 0;
+}
+.card>img{
+	width: 100%;
+}
+.select>.card>img,
+.device>.card>img{
+	height: 95px;
+}
+
+.center{
+	float: left;
+	width:5%;
+	height: 100%;
+}
+.line{
+	background-color:#424242;
+	width:50%;
+	height:1400px;
+	margin:0 auto;
+}
+.device{
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
+	padding: 0% 10%;
+}
+.device>.card{
+	background-color:#202020;
+	width: 20%;
+	margin: 0;
+}
+
+@media(min-width:1030px){
+	.logo{
+	margin-top:0;
+	}
+}

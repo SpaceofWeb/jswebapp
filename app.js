@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const Liquidjs = require('liquidjs');
 const flash    = require('connect-flash');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+const mysql = require('mysql');
+// const mysqlModel = require('mysql-model');
 const passport = require('passport');
 
 const config = {
-	database: require('./config/database'),
+	db: require('./config/database'),
 };
 
 
@@ -16,11 +18,13 @@ const config = {
 const port = 3000;
 const app = express();
 
-mongoose.connect(config.database.mongoURI, {useNewUrlParser: true})
-	.then(() => console.log('Mongodb connected'))
-	.catch(err => console.error(err));
+// mongoose.connect(config.database.mongoURI, {useNewUrlParser: true})
+// 	.then(() => console.log('Mongodb connected'))
+// 	.catch(err => console.error(err));
+
 
 require('./config/passport')(passport)
+
 
 
 app.engine('liquid', new Liquidjs({
@@ -30,9 +34,10 @@ app.engine('liquid', new Liquidjs({
 
 app.set('view engine', 'liquid');
 
-app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+
 
 app.use(expressSession({
 	secret: 'jswebapp',
@@ -40,14 +45,30 @@ app.use(expressSession({
 	saveUninitialized: true
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
 
+app.use('/client', express.static(path.join(__dirname, 'client')))
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/auth', require('./app/routes/auth'));
+
+
+
+app.use(require('cors')());
+
+app.use('/api/rooms', require('./app/middleware/isLogged'));
+app.use('/api/devices', require('./app/middleware/isLogged'));
+app.use('/api/macros', require('./app/middleware/isLogged'));
+
+
+// app.use('/auth', require('./app/routes/auth'));
+app.use('/api', require('./app/routes/api/auth'));
+
+
+
 
 
 
