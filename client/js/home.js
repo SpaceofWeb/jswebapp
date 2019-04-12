@@ -1,82 +1,122 @@
-let homePage = `
-<header>
-	<div><a href = "#">HOME</a></div>
-	<div><a href = "#">MACROS</a></div>
-	<div><a href = "#">DEVICE</a></div>
-</header>
-<hr>
-<div class="vector">
-	<img src="img/102061.svg">
-	<img src="img/25218.svg">
-</div>
-<div class="room" id="rooms"></div>
+class Home {
 
-<div class="center"><div class="line"></div></div>
-
-<div class="select" id="devices"></div>
-`;
+	getRooms() {
+		$.ajax({
+			url: host + '/rooms',
+			type: 'GET',
+			dataType: 'json',
+			headers: {'Authorization': `Bearer ${auth.token}`},
+			error: err => console.error(err),
+			success: data => {
+				console.log('rooms', data);
+				this.setRooms(data);
+			}
+		});
+	}
 
 
-let roomCard = `
-<div class="card rooms" id="{{id}}">
-	<img src="{{image}}">
-	<p class="card-text">{{name}}</p>
-</div>
-`;
+	getDevices() {
+		$.ajax({
+			url: host + '/rooms/121/devices',
+			type: 'GET',
+			dataType: 'json',
+			headers: {'Authorization': `Bearer ${auth.token}`},
+			error: err => console.error(err),
+			success: data => {
+				console.log('devices:', data);
+				this.setDevices(data);
+			}
+		});
+	}
 
 
-let  deviceCard = `
-<div class="card">
-	<img src="">
-	<p class="card-text">датчик</p>
-</div>
-`;
+	show() {
+		document.cookie = 'page=home';
+
+		$('#content').html(this._template());
+
+		this.getRooms();
+		this.getDevices();
+	}
 
 
+	setRooms(data) {
+		let html = '';
 
+		for (let d of data) {
+			let t = this._tplRoom();
 
-
-function initHome() {
-	$('#content').html(homePage);
-
-	showRooms();
-	// showDevices();
-}
-
-
-function showRooms() {
-	$.ajax({
-		url: host + '/rooms',
-		type: 'GET',
-		dataType: 'json',
-		headers: {'Authorization': `Bearer ${token}`},
-		error: err => {
-			console.error(err);
-		},
-		success: data => {
-			console.log(data);
-
-			let html = '';
-			for (let r of data) {
-				let h = roomCard;
-				h = h.replace('{{id}}', r.id);
-				h = h.replace('{{image}}', `img/rooms/${r.photo}`);
-				h = h.replace('{{name}}', r.name);
-				html += h;
+			for (let key in d) {
+				t = t.replace(`{{${key}}}`, d[key]);
 			}
 
-			$('#rooms').html(html);
-
-			$('.rooms').on('click', (e) => {
-				initRoom(e.currentTarget.id);
-			});
+			html += t;
 		}
-	});
+
+		$('.rooms').html(html);
+	}
+
+
+	setDevices(data) {
+		let html = '';
+
+		for (let d of data) {
+			let t = this._tplDevice();
+
+			for (let key in d) {
+				t = t.replace(new RegExp(`{{${key}}}`, 'g'), d[key]);
+			}
+
+			html += t;
+		}
+
+		$('.devices').html(html);
+	}
+
+
+
+	_template() {
+		return `
+			<header>
+				<ul class="nav">
+					<li><a href="#" onclick="home.show();">Главная</a></li>
+					<li><a href="devices.html">Устройства</a></li>
+					<li>SmartHome</li>
+					<li><a href="macros.html">Макросы</a></li>
+					<li><a href="#" onclick="auth.logout();">Выход</a></li>
+				</ul>
+			</header>
+			<div class="main">
+				<h2>Комнаты</h2>
+				<div class="rooms"></div>
+				<h2>Устройства</h2>
+				<div class="devices"></div>
+			</div>
+		`;
+	}
+
+
+	_tplRoom() {
+		return `
+			<div class="wrapper padded-centered">
+				<a href="#" id="{{id}}">
+					<img class="img centered" src="/client/img/{{photo}}">
+					<span>{{name}}</span>
+				</a>
+			</div>
+		`;
+	}
+
+
+	_tplDevice() {
+		return `
+			<div class="wrapper padded-centered" id="{{id}}">
+				<img class="img centered" src="/client/img/dev/{{id}}.jpg">
+				<span>{{name}}</span>
+			</div>
+		`;
+	}
 }
-
-
-
-
 
 
 

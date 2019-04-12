@@ -1,0 +1,245 @@
+@font-face{
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.ttf');
+    /* font-weight: normal; */
+    /* font-style: normal; */
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background-color: rgb(211, 76, 76);
+    overflow: auto;
+}
+
+*{
+    color: inherit;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+.wrapper{
+    width: 100%;
+}
+.padded-centered{
+    height: 0;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 13%;
+}
+.img{
+    width:100%; /*calc(100%/4);*/
+    height: auto;
+}
+.centered{
+    position: absolute;
+    top: -50%;
+    right:-50%;
+    left:-50%;
+    bottom: -50%;
+    margin: auto;
+}
+
+
+
+@media (min-width:1600px){
+    form{
+        margin: 20% 40%;
+        padding: 2%;
+    }
+    input{
+        margin-bottom:5%; 
+        border-radius: 5px;
+    }
+    form :nth-child(3){
+        margin-bottom: 10%;
+    }
+    form h1{
+        font-size: 2.5vw;
+        margin: 0 0 5% 0; 
+    }
+    form button{
+        margin:0 25%; 
+        /* margin-bottom:150%;      */
+    }
+}
+/* @media (min-width:1366px) and (max-width:1366px){ */
+@media (min-width:1024px) and (max-width:1024px){
+    
+    form{
+        margin: 30% 30%;
+        padding: 5%;
+    }
+    input{
+        margin-bottom:5%; 
+        border-radius: 5px;
+    }
+    form :nth-child(3){
+        margin-bottom: 10%;
+    }
+    form h1{
+        font-size: 5vw;
+        margin: 5% 0 5% 0;        
+    }
+    form button{
+        margin:0 25%; 
+        margin-bottom:10%; 
+        font-size: 2vw;    
+    }
+}
+@media (max-width:375px){
+    form{
+        margin: 40% 5%;
+        padding: 2%;
+    }
+    input{
+        margin-bottom:5%; 
+        border-radius: 5px;
+    }
+    form :nth-child(3){
+        margin-bottom: 10%;
+    }
+    form h1{
+        font-size: 12vw;
+        margin: 5% 0 5% 0;        
+    }
+    form button{
+        margin:0 25%; 
+        margin-bottom:5%;     
+    }
+}
+
+
+form, header, .main{
+    background-color: rgb(194, 144, 144);
+}
+header{
+    /* display: flex; */
+    width: 100%;
+    /* align-content: space-between; */
+}
+.nav{
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 100%;
+}
+.nav li{
+    width: 100%;
+    text-align: center;
+    font-size: 2vw;
+}
+.nav :nth-child(3){
+    /* color: rebeccapurple; */
+    font-size: 4vw;   
+}
+form input{
+    width: 100%;
+    padding: 3%;
+}
+form h1{
+    text-align: center;
+}
+form button{
+    width: 50%;
+    border-radius: 5px;
+    padding: 3%;
+}
+.rooms, .devices{
+    display: flex;
+    margin-bottom: 1.5%;
+    /* flex-direction: row; */
+    /* justify-content: center; */
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+.rooms div, .devices div{
+    width: calc(100%/4);
+    margin-bottom: 50px;
+    border: 1px solid rgb(211, 76, 76);
+}
+.room div{
+    margin-bottom: 50px;
+
+}
+.padded-centered:nth-child(5){
+    /* padding-bottom: 14.5%; */
+}
+.main{
+    margin: 5% 10%;
+    padding: 1.5% 0;
+}
+.main h2{
+    text-align: center;
+    font-size: 2.5vw;
+    margin-top: 0;
+    font-weight: lighter;
+}
+span{
+    font-size: 3vw;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.room .padded-centered{
+    padding-bottom: 44%;
+}
+
+.macros{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#addMacros{
+    align-items: center;
+    text-align: center;
+    font-size: 7.3vw;
+}
+.macros div{
+    background-color: #644AD8;
+    margin-right: 2%;
+    width: calc(100%/5);
+}
+.macros div ul{
+    margin: 5% 10%;
+    padding: 0 ;
+}
+.macros div li{
+    /* width: 100%; */
+
+}
+
+.devices span{
+    font-size: 1.5vw;
+}
+
+h3{
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+.devices div p{
+    color: rgb(0, 0, 0);
+    font-size: 8vw;
+    position: absolute;
+    font-size: 3vw;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    color: rgb(0, 0, 0);
+    background-color: rgba(20, 160, 31, 0.5);
+}

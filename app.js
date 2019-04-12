@@ -52,6 +52,7 @@ app.use(flash());
 
 
 app.use('/client', express.static(path.join(__dirname, 'client')))
+app.use('/client_old', express.static(path.join(__dirname, 'client_old')))
 app.use(express.static(path.join(__dirname, 'public')));
 
 

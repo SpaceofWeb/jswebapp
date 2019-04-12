@@ -27,6 +27,11 @@ let users = new Users;
 router.post('/login', (req, res) => {
 	// console.log(req.body);
 
+	if (req.body.login === '' || req.body.password === '') {
+		res.status(401).json({err: 'Login or password not passed'});
+		return;
+	}
+
 	let h = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null);
 	h = h.substr(0, 32);
 
@@ -38,12 +43,14 @@ router.post('/login', (req, res) => {
 		// console.log('get user:', res1);
 		if (res1 && res1[0] && res1[0].id) {
 			let q = `update user set token='${h}' where id='${res1[0].id}'`;
-			db.query(q, (err, res2, fields) => {
-				if (err) throw err;
+			db.query(q, (err1, res2, fields) => {
+				if (err1) throw err1;
 
 				if (res2.changedRows === 1) res.status(200).send(h);
 				else res.status(401).json({});
 			});
+		} else {
+			res.status(401).json({err: 'Login or password incorrect'});
 		}
 	});
 
@@ -52,8 +59,6 @@ router.post('/login', (req, res) => {
 
 // GET ROOMS
 router.get('/rooms', (req, res) => {
-	console.log('get rooms');
-
 	let q = `select * from room`;
 	db.query(q, (err, result) => {
 		if (err) throw err;
@@ -99,7 +104,6 @@ router.get('/devices/:id', (req, res) => {
 
 // UPDATE DEVICE
 router.patch('/devices/:id', (req, res) => {
-	console.log('patch query');
 	let q = `update device set value='${req.body.value}' where id='${req.params.id}'`;
 	db.query(q, (err, result) => {
 		if (err) throw err;
@@ -145,8 +149,8 @@ router.post('/macros', (req, res) => {
 		vals = vals.slice(0, -1);
 		q = `insert into action (macro_id, device_id, value) 
 				values ${vals}`;
-		db.query(q, (err, result2) => {
-			if (err) throw err;
+		db.query(q, (err1, result2) => {
+			if (err1) throw err1;
 
 			res.status(200).json({});
 		});

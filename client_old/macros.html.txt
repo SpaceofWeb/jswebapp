@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>auto</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css.css"> -->
+	<style>
+		.input {
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+<!-- 	<div id="content">
+
+		<form id="form">
+			<input type="text" name="name" id="macros" value="name">
+			<button type="button" onclick="addDevice();">+</button>
+
+			<div id="devices"></div>
+			<button type="button" onclick="addMacros();">ADD</button>
+		</form>
+
+	</div> -->
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/macros.js"></script>
+</body>
+</html>
